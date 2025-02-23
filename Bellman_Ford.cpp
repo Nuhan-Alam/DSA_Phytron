@@ -26,8 +26,8 @@ int main()
     int ans[v];
     fill(&ans[0],&ans[0]+v,INT_MAX);
     ans[0]=0;
-    Edge* edge_list[v];
-    for(int i=0;i<v;i++)
+    Edge* edge_list[e];
+    for(int i=0;i<e;i++)
     {
         int from,to,weight;
         cin >> from >> to >> weight;
@@ -40,7 +40,7 @@ int main()
     //     cout << ed->from << " " <<  ed->to  << " " << ed->weight << endl;
     // }
     bool negative_cycle = false;
-    for(int i=v;i>=0;i--)
+    for(int i=e;i>0;i--)
     {
         //cout << "In outer Looop" << endl;
         for(auto eg:edge_list)
@@ -56,19 +56,26 @@ int main()
 
     for(auto eg:edge_list)
         {
-            if(ans[eg->from]+eg->weight<ans[eg->to])
+            if(ans[eg->from]!=INT_MAX && ans[eg->from]+eg->weight<ans[eg->to])
             {
+                //cout << eg->from << " " << ans[eg->from] << " To " << eg->to << " " << ans[eg->to] << endl;
                 negative_cycle = true;
                 break;
             }
         }
+
+        // for(int i=0;i<v;i++)
+        // {
+        //     cout << i << " -> " << ans[i]<< endl;
+        // }
 
     if(negative_cycle) cout << "Negative Cycle Ditectied" << endl;
     else
     {
         for(int i=0;i<v;i++)
         {
-            cout << i << " -> " << ans[i]<< endl;
+            if(ans[i]==INT_MAX) cout << i << " -> " << "not reachable" << endl;
+            else cout << i << " -> " << ans[i]<< endl;
         }
     }
 return 0;
