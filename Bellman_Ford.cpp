@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//Took input as reference
 class Edge
 {
     public:
@@ -24,7 +24,7 @@ int main()
     int v,e;
     cin >> v >> e;
     
-    vector<Edge*> edge_list(v);
+    Edge* edge_list[v];
     for(int i=0;i<v;i++)
     {
         int from,to,weight;
