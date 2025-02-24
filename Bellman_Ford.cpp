@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 //Input with reference and array to increase porficiency
+//Input is taken as Edge_list
+//Complexity O(EV)
 class Edge
 {
     public:
@@ -48,12 +50,12 @@ int main()
         }
     }
 
-
+    
     //Cycle Ditection
     bool negative_cycle = false;
     for(auto eg:edge_list)
         {
-            if(ans[eg->from]!=INT_MAX && ans[eg->from]+eg->weight<ans[eg->to])
+            if(ans[eg->from]!=INT_MAX && ans[eg->from]+eg->weight < ans[eg->to])
             {
                 negative_cycle = true;
                 break;
